@@ -458,11 +458,11 @@ setShowResults(true);
     <div className="space-y-4 text-gray-200">
         <div>
             Estimated Monthly Savings:
-            <div className="text-xl text-gray-300 mt-4">
-              Annual Savings:
               <span className="text-cyan-400 font-bold">
-                ${annualSavings}
+                ${savings}
               </span>
+              <div className="text-xl text-gray-300 mt-4">
+              Annual Savings:
             </div>
         </div>
 
