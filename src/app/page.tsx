@@ -14,6 +14,7 @@ export default function Home() {
         const [annualSavings, setAnnualSavings] = useState(0);
         const [efficiencyScore, setEfficiencyScore] = useState(0);
         const [summary, setSummary] = useState("");
+        const [loading, setLoading] = useState(false);
 
 
         useEffect(() => {       //load data
@@ -239,6 +240,10 @@ export default function Home() {
           <option>Anthropic API</option>
           <option>Windsurf</option>
           <option>v0</option>
+          <option>Perplexity</option>
+          <option>Midjourney</option>
+          <option>Notion AI</option>
+          <option>Canva AI</option>
         </select>
       </div>
 
@@ -306,58 +311,125 @@ export default function Home() {
       </div>
       
       {/* Button */}
-<button
+     <button
   onClick={() => {
-   const spend = Number(monthlySpend || "0");
-const team = Number(teamSize || "1");
 
-let calculatedSavings = 0;
-let recommendationText = "";
-let score = 0;
-let summaryText = "";
+    setLoading(true);
 
-if (selectedTool === "ChatGPT") {
-  calculatedSavings = Math.floor(spend * 0.2);
-  recommendationText =
-    spend > 100 ? "ChatGPT Team Plan" : "ChatGPT Plus";
-  score = 82;
-}
+    const spend = Number(monthlySpend || "0");
+    const team = Number(teamSize || "1");
 
-else if (selectedTool === "Claude") {
-  calculatedSavings = Math.floor(spend * 0.15);
-  recommendationText = "Claude Pro";
-  score = 78;
-}
+    let calculatedSavings = 0;
+    let recommendationText = "";
+    let score = 0;
+    let summaryText = "";
 
-else if (selectedTool === "Gemini") {
-  calculatedSavings = Math.floor(spend * 0.18);
-  recommendationText = "Gemini Advanced";
-  score = 80;
-}
+    if (selectedTool === "ChatGPT") {
+      calculatedSavings = Math.floor(spend * 0.2);
+      recommendationText =
+        spend > 100 ? "ChatGPT Team Plan" : "ChatGPT Plus";
+      score = 82;
+    }
 
-else {
-  calculatedSavings = Math.floor(spend * 0.12);
-  recommendationText = "Optimized Standard Plan";
-  score = 75;
-}
+    else if (selectedTool === "Claude") {
+      calculatedSavings = Math.floor(spend * 0.15);
+      recommendationText = "Claude Pro";
+      score = 78;
+    }
 
-summaryText = `
-Your team of ${team} users appears to be overspending on ${selectedTool}.
-Based on your current usage, switching to ${recommendationText}
-could save approximately $${calculatedSavings} per month.
-`;
+    else if (selectedTool === "Gemini") {
+      calculatedSavings = Math.floor(spend * 0.18);
+      recommendationText = "Gemini Advanced";
+      score = 80;
+    }
 
-setSavings(calculatedSavings);
-setAnnualSavings(calculatedSavings * 12);
-setRecommendation(recommendationText);
-setEfficiencyScore(score);
-setSummary(summaryText);
+    else if (selectedTool === "Cursor") {
+      calculatedSavings = Math.floor(spend * 0.20);
+      recommendationText = "Cursor Pro";
+      score = 84;
+    }
 
-setShowResults(true);
-  }}
+    else if (selectedTool === "GitHub Copilot") {
+      calculatedSavings = Math.floor(spend * 0.12);
+      recommendationText = "Copilot Individual";
+      score = 82;
+    }
+
+    else if (selectedTool === "OpenAI API") {
+      calculatedSavings = Math.floor(spend * 0.18);
+      recommendationText = "Token Optimization";
+      score = 86;
+    }
+
+    else if (selectedTool === "Anthropic API") {
+      calculatedSavings = Math.floor(spend * 0.17);
+      recommendationText = "Claude API Starter";
+      score = 81;
+    }
+
+    else if (selectedTool === "Windsurf") {
+      calculatedSavings = Math.floor(spend * 0.16);
+      recommendationText = "Windsurf Starter";
+      score = 79;
+    }
+
+    else if (selectedTool === "v0") {
+      calculatedSavings = Math.floor(spend * 0.14);
+      recommendationText = "v0 Standard";
+      score = 77;
+    }
+
+    else if (selectedTool === "Perplexity") {
+      calculatedSavings = Math.floor(spend * 0.13);
+      recommendationText = "Perplexity Pro";
+      score = 78;
+    }
+
+    else if (selectedTool === "Midjourney") {
+      calculatedSavings = Math.floor(spend * 0.15);
+      recommendationText = "Basic Creator Plan";
+      score = 76;
+    }
+
+    else if (selectedTool === "Notion AI") {
+      calculatedSavings = Math.floor(spend * 0.10);
+      recommendationText = "Notion AI Plus";
+      score = 75;
+    }
+
+    else if (selectedTool === "Canva AI") {
+      calculatedSavings = Math.floor(spend * 0.11);
+      recommendationText = "Canva Pro";
+      score = 74;
+    }
+    else {
+      calculatedSavings = Math.floor(spend * 0.12);
+      recommendationText = "Optimized Standard Plan";
+      score = 75;
+    }
+
+      summaryText = `
+    Your team of ${team} users appears to be overspending on ${selectedTool}.
+    Based on your current usage, switching to ${recommendationText}
+    could save approximately $${calculatedSavings} per month.
+    `;
+
+      setSavings(calculatedSavings);
+      setAnnualSavings(calculatedSavings * 12);
+      setRecommendation(recommendationText);
+      setEfficiencyScore(score);
+      setSummary(summaryText);
+
+      setTimeout(() => {
+        setLoading(false);
+        setShowResults(true);
+        }, 1500);
+
+  } }
+
   className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105"
 >
-  Generate Audit
+  {loading ? "Generating..." : "Generate Audit"}
 </button>
 
     </div>
