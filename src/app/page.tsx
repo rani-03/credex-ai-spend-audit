@@ -101,7 +101,7 @@ export default function Home() {
                     </div>
 
                     {/*Card 2*/}
-                    <div className="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 hover:border-blue-500 hover:-translate-y-2 transition duration-300">
+                    <div className="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 hgover:border-blue-500 hover:-translate-y-2 transition duration-300">
                         <h3 className="text-2xl font-semibold mb-4">
                             Smart Recommendations
                         </h3>
@@ -173,7 +173,91 @@ export default function Home() {
                     </ul>
 
                 <button
-                    onClick={() => setShowResults(true)}
+                    onClick={() => {
+
+                    const spend = Number(monthlySpend || "0");
+                    const team = Number(teamSize || "1");
+
+                    let calculatedSavings = 0;
+                    let recommendationText = "";
+                    let score = 0;
+                    let summaryText = "";
+                    let reason = "";
+
+                     if (selectedTool === "ChatGPT") {
+
+                     if (team <= 2 && spend > 40) {
+                        calculatedSavings = 25;
+                        recommendationText = "Switch to ChatGPT Plus";
+                        reason =
+                          "Small teams usually don't need Team plans.";
+                      } else {
+                        calculatedSavings = 10;
+                        recommendationText = "Optimize usage";
+                        reason =
+                          "Your current setup is mostly efficient.";
+                      }
+
+                      score = 85;
+                    }
+
+                    else if (selectedTool === "Claude") {
+
+                      calculatedSavings = Math.floor(spend * 0.18);
+                      recommendationText = "Claude Pro";
+                      reason =
+                        "Claude Pro fits smaller research teams better.";
+
+                      score = 80;
+                    }
+
+                    else if (selectedTool === "Gemini") {
+
+                      calculatedSavings = Math.floor(spend * 0.15);
+                      recommendationText = "Gemini Advanced";
+                        reason =
+                        "Gemini Advanced provides similar features at lower cost.";
+
+                      score = 78;
+                    }
+
+                    else if (selectedTool === "GitHub Copilot") {
+
+                      calculatedSavings = Math.floor(spend * 0.12);
+                      recommendationText = "Copilot Individual";
+                      reason =
+                        "Business plans are unnecessary for smaller engineering teams.";
+
+                      score = 82;
+                    }
+
+                    else {
+
+                      calculatedSavings = Math.floor(spend * 0.10);
+                      recommendationText = "Standard Optimized Plan";
+                      reason =
+                        "Moderate savings possible with usage optimization.";
+
+                      score = 75;
+                    }
+
+                    summaryText = `
+                    Your ${team}-person team appears to be overspending on ${selectedTool}.
+                    Based on your usage pattern and current spend, switching to ${recommendationText}
+                    could save approximately $${calculatedSavings} per month.
+                    ${reason}
+                    `;
+
+                    setSavings(calculatedSavings);
+                    setAnnualSavings(calculatedSavings * 12);
+                    setRecommendation(recommendationText);
+                    setEfficiencyScore(score);
+                    setSummary(summaryText);
+
+                    setShowResults(true);
+
+                    }}
+ 
                     className="w-full bg-blue-600 hover:bg-blue-700 transition p-4 rounded-xl font-semibold">
                         Generate Audit
                 </button>       
@@ -372,15 +456,15 @@ setShowResults(true);
     </h2>
 
     <div className="space-y-4 text-gray-200">
-        <p>
+        <div>
             Estimated Monthly Savings:
-            <p className="text-xl text-gray-300 mt-4">
+            <div className="text-xl text-gray-300 mt-4">
               Annual Savings:
               <span className="text-cyan-400 font-bold">
                 ${annualSavings}
               </span>
-            </p>
-        </p>
+            </div>
+        </div>
 
         <p>
             Better Plan Recommendation:
