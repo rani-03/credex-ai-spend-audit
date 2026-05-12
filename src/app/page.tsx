@@ -39,7 +39,7 @@ export default function Home() {
 }, [selectedTool, currentPlan, monthlySpend, teamSize, useCase]);
 
     return (
-        <main className="min-h-screen bg-black text-white">
+        <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800 text-white">
 
             {/*NAVBAR*/}
             <nav className="flex justify-between items-center px-4 md:px-8 py-5 border-b border-gray-800">
@@ -74,14 +74,14 @@ export default function Home() {
                     and discover smarter pricing options instantly.
                 </p>
 
-                <button className="mt-8 bg-white text-black px-4 md:px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 hover:scale-105 transition duration-300">
+                <button className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105">
                     Start Free Audit
                 </button>
 
             </section>
 
             {/*Features Section*/}
-            <section className="py-20 px-8 bg-zinc-950">
+            <section className="py-28 space-y-8 px-8 bg-zinc-950">
 
                 <h2 className="text-4xl font-bold text-center mb-14">
                     Features
@@ -107,7 +107,7 @@ export default function Home() {
                         </h3>
 
                         <p className="text-gray-400">
-                            Get better pricing suggetions and alternative AI tools to reduce your monthly costs.
+                            Get better pricing suggestions and alternative AI tools to reduce your monthly costs.
                         </p>
                     </div>
 
@@ -123,7 +123,7 @@ export default function Home() {
                     </div>
 
             {/* Pricing Section */}
-            <section className="py-24 px-4 md:px-8 bg-black">
+            <section className="py-24 px-4 md:px-8 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800">
 
                         <h2 className="text-4xl font-bold text-center mb-14">
                              Pricing Plans
@@ -148,7 +148,7 @@ export default function Home() {
                          <li>✔ Email Support</li>
                         </ul>
 
-                        <button className="mt-8 w-full bg-white text-black py-3 rounded-lg font-semibold">
+                        <button className="w-full bg-slate-700 hover:bg-slate-600 transition-all duration-300 p-4 rounded-2xl font-semibold">
                         Choose Plan
                         </button>
 
@@ -173,93 +173,8 @@ export default function Home() {
                     </ul>
 
                 <button
-                    onClick={() => {
-
-                    const spend = Number(monthlySpend || "0");
-                    const team = Number(teamSize || "1");
-
-                    let calculatedSavings = 0;
-                    let recommendationText = "";
-                    let score = 0;
-                    let summaryText = "";
-                    let reason = "";
-
-                     if (selectedTool === "ChatGPT") {
-
-                     if (team <= 2 && spend > 40) {
-                        calculatedSavings = 25;
-                        recommendationText = "Switch to ChatGPT Plus";
-                        reason =
-                          "Small teams usually don't need Team plans.";
-                      } else {
-                        calculatedSavings = 10;
-                        recommendationText = "Optimize usage";
-                        reason =
-                          "Your current setup is mostly efficient.";
-                      }
-
-                      score = 85;
-                    }
-
-                    else if (selectedTool === "Claude") {
-
-                      calculatedSavings = Math.floor(spend * 0.18);
-                      recommendationText = "Claude Pro";
-                      reason =
-                        "Claude Pro fits smaller research teams better.";
-
-                      score = 80;
-                    }
-
-                    else if (selectedTool === "Gemini") {
-
-                      calculatedSavings = Math.floor(spend * 0.15);
-                      recommendationText = "Gemini Advanced";
-                        reason =
-                        "Gemini Advanced provides similar features at lower cost.";
-
-                      score = 78;
-                    }
-
-                    else if (selectedTool === "GitHub Copilot") {
-
-                      calculatedSavings = Math.floor(spend * 0.12);
-                      recommendationText = "Copilot Individual";
-                      reason =
-                        "Business plans are unnecessary for smaller engineering teams.";
-
-                      score = 82;
-                    }
-
-                    else {
-
-                      calculatedSavings = Math.floor(spend * 0.10);
-                      recommendationText = "Standard Optimized Plan";
-                      reason =
-                        "Moderate savings possible with usage optimization.";
-
-                      score = 75;
-                    }
-
-                    summaryText = `
-                    Your ${team}-person team appears to be overspending on ${selectedTool}.
-                    Based on your usage pattern and current spend, switching to ${recommendationText}
-                    could save approximately $${calculatedSavings} per month.
-                    ${reason}
-                    `;
-
-                    setSavings(calculatedSavings);
-                    setAnnualSavings(calculatedSavings * 12);
-                    setRecommendation(recommendationText);
-                    setEfficiencyScore(score);
-                    setSummary(summaryText);
-
-                    setShowResults(true);
-
-                    }}
- 
-                    className="w-full bg-blue-600 hover:bg-blue-700 transition p-4 rounded-xl font-semibold">
-                        Generate Audit
+                    className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105">
+                        Start Pro Plan
                 </button>       
                 </div>
 
@@ -281,7 +196,7 @@ export default function Home() {
                      <li>✔ 24/7 Support</li>
                     </ul>    
    
-                <button className="mt-8 w-full bg-white text-black py-3 rounded-lg font-semibold">
+                <button className="w-full bg-slate-700 hover:bg-slate-600 transition-all duration-300 p-4 rounded-2xl font-semibold">
                     Contact Sales
                 </button>
             </div>
@@ -440,7 +355,7 @@ setSummary(summaryText);
 
 setShowResults(true);
   }}
-  className="w-full bg-blue-600 hover:bg-blue-700 transition p-4 rounded-xl font-semibold"
+  className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105"
 >
   Generate Audit
 </button>
@@ -478,7 +393,9 @@ setShowResults(true);
 
         <p className="text-xl text-gray-300 mt-4">
             Efficiency Score:
-            <span className="text-cyan-400 font-bold"> 82%</span>
+            <span className="text-cyan-400 font-bold">
+              {efficiencyScore}%
+            </span>
         </p>
 
         <div className="mt-8 bg-black/40 rounded-xl p-6 border-cyan-500/20">
