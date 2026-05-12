@@ -463,6 +463,9 @@ setShowResults(true);
               </span>
               <div className="text-xl text-gray-300 mt-4">
               Annual Savings:
+               <span className="text-cyan-400 font-bold">
+                ${annualSavings}
+              </span>
             </div>
         </div>
 
