@@ -458,8 +458,9 @@ export default function Home() {
   }}
   className="mt-6 bg-white text-black hover:bg-gray-200 transition-all duration-300 px-6 py-3 rounded-xl font-semibold shadow-lg"
 >
-  Copy Share Link
+  {/*Copy Share Link*/}
 </button>
+
   </div>
 
 
