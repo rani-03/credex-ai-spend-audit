@@ -414,25 +414,30 @@ setShowResults(true);
   </div>
 )}
 {/* Footer */}
-<footer className="mt-24 border-t border-gray-800 py-10 px-8 text-center text-gray-400">
+<footer className="mt-24 border-t border-cyan-500/20 bg-black/20 backdrop-blur-md py-12 text-center">
 
-  <h2 className="text-2xl font-bold text-white mb-4">
+  <h2 className="text-3xl font-bold text-cyan-400 mb-6">
     Contact Us
   </h2>
 
-  <p className="mb-2">
-    Email: support@credexai.com
-  </p>
+  <div className="space-y-3 text-gray-300 text-lg">
+    <p>
+      Email:
+      <span className="text-cyan-300"> support@credexai.com</span>
+    </p>
 
-  <p className="mb-2">
-    Phone: +91 9876543210
-  </p>
+    <p>
+      Phone:
+      <span className="text-cyan-300"> +91 9876543210</span>
+    </p>
 
-  <p className="mb-6">
-    Kolkata, India
-  </p>
+    <p>
+      Location:
+      <span className="text-cyan-300"> Kolkata, India</span>
+    </p>
+  </div>
 
-  <div className="flex justify-center gap-6 text-sm">
+  <div className="flex justify-center gap-8 mt-8 text-gray-400 font-medium">
     <a href="#" className="hover:text-cyan-400 transition">
       LinkedIn
     </a>
@@ -446,9 +451,9 @@ setShowResults(true);
     </a>
   </div>
 
-  <p className="mt-6 text-xs text-gray-500">
+  <div className="mt-8 text-sm text-gray-500">
     © 2026 Credex AI Audit. All rights reserved.
-  </p>
+  </div>
 
 </footer>
         </main>
