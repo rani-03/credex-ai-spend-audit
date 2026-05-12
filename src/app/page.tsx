@@ -15,6 +15,7 @@ export default function Home() {
         const [efficiencyScore, setEfficiencyScore] = useState(0);
         const [summary, setSummary] = useState("");
         const [loading, setLoading] = useState(false);
+        const [email, setEmail] = useState("");
 
 
         useEffect(() => {       //load data
@@ -309,6 +310,19 @@ export default function Home() {
           <option>Mixed</option>
         </select>
       </div>
+      {/* Email Input */}
+      <div>
+        <label className="block mb-2 text-sm text-gray-300">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          placeholder="example@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-3 rounded-lg bg-black border border-gray-700 text-white"/>
+        </div>
       
       {/* Button */}
      <button
@@ -427,10 +441,14 @@ export default function Home() {
 
   } }
 
-  className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105"
->
-  {loading ? "Generating..." : "Generate Audit"}
-</button>
+        className="w-full bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg hover:scale-105">
+          {loading ? "Generating..." : "Generate Audit"}
+       </button>
+
+       <button
+        className="w-full mt-4 bg-white text-black hover:bg-gray-200 transition-all duration-300 p-4 rounded-2xl font-semibold shadow-lg">
+          Save Audit
+       </button>
 
     </div>
   </div>
